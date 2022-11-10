@@ -113,7 +113,7 @@ $careerhomeurl = new moodle_url(
                 <div class="container">
                     <div class="topMain-inn-banner">
                         <div class="topMain-left-arrow">
-                            <a href="<?php echo $careerhomeurl; ?>" class="btn"><img src="https://vonkelemen.org/online/local/leeloolxpcareers/assets/img/left-aro-img.png" alt=""></a>
+                            <a href="<?php echo $careerhomeurl; ?>"><img src="https://vonkelemen.org/online/local/leeloolxpcareers/assets/img/left-aro-img.png" alt=""></a>
                         </div>
                         <div class="topMain-cont-banner">
                             <!-- <h2><?php echo $response['data']['catdata']['name']; ?></h2>

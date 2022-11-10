@@ -110,7 +110,7 @@ if ($response['data']['lpdata']['image_big']) {
                 <div class="container">
                     <div class="topMain-inn-banner">
                         <div class="topMain-left-arrow">
-                            <a href="btn"><img src="https://vonkelemen.org/online/local/leeloolxpcareers/assets/img/left-aro-img.png" alt=""></a>
+                            <a href="javascript:history.back()"><img src="https://vonkelemen.org/online/local/leeloolxpcareers/assets/img/left-aro-img.png" alt=""></a>
                         </div>
                         <div class="topMain-cont-banner">
                             <!-- <h2><?php echo $response['data']['lpdata']['name']; ?></h2>
