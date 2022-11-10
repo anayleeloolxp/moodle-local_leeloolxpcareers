@@ -110,7 +110,7 @@ if ($response['data']['lpdata']['image_big']) {
                 <div class="container">
                     <div class="topMain-inn-banner">
                         <div class="topMain-left-arrow">
-                            <button class="btn"><img src="https://vonkelemen.org/online/local/leeloolxpcareers/assets/img/left-aro-img.png" alt=""></button>
+                            <a href="btn"><img src="https://vonkelemen.org/online/local/leeloolxpcareers/assets/img/left-aro-img.png" alt=""></a>
                         </div>
                         <div class="topMain-cont-banner">
                             <!-- <h2><?php echo $response['data']['lpdata']['name']; ?></h2>
@@ -190,7 +190,7 @@ if ($response['data']['lpdata']['image_big']) {
                                         <div class="carrerList-item-cont">
                                             <div class="carrerList-item-title">
                                                 <div class="carrerList-item-name"><?php echo $lp['name']; ?></div>
-                                                <div class="carrerList-item-des"><?php echo $lp['lps']; ?></div>
+                                                <div class="carrerList-item-des"><?php echo $lp['heading']; ?></div>
                                             </div>
                                             <div class="carrerList-item-btn">
                                                 <?php

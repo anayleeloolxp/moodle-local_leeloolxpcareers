@@ -128,7 +128,12 @@ function local_leeloolxpcareers_course_image($course) {
     // Where are the default at even?.
     return 'https://leeloolxp.com/modules/mod_acadmic/images/Leeloo-lxp1.png';
 }
-
+if ($response['data']['lpdata']['image_big']) {
+    echo '<style>.carrer-main-banner {
+        background-size: 100% 100%;
+        background-image: url(' . $teamniourl . '/' . $response['data']['lpdata']['image_big'] . ');
+    }</style>';
+}
 ?>
 <div class="row">
     <div class="col-12">
@@ -144,8 +149,6 @@ function local_leeloolxpcareers_course_image($course) {
                                 } else {
                                     echo '<iframe src="https://player.vimeo.com/video/' . $lpdata['video_1'] . '" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
                                 }
-                            } else if ($lpdata['image_big']) {
-                                echo '<img src="' . $teamniourl . '/' . $lpdata['image_big'] . '" alt="">';
                             } ?>
 
                         </div>
@@ -219,7 +222,7 @@ function local_leeloolxpcareers_course_image($course) {
                         <div class="col-md-9">
                             <div class="carrer-details-left">
                                 <h4><?php echo $lpdata['name']; ?></h4>
-                                <p><small><?php echo $lpdata['heading']; ?></small></p>
+                                <p><small><?php echo $lpdata['code']; ?></small></p>
                                 <p><?php echo $lpdata['description']; ?></p>
                             </div>
                         </div>
@@ -232,8 +235,6 @@ function local_leeloolxpcareers_course_image($course) {
                                         } else {
                                             echo '<iframe src="https://player.vimeo.com/video/' . $lpdata['video_2'] . '" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
                                         }
-                                    } else if ($lpdata['image_small']) {
-                                        echo '<img src="' . $teamniourl . '/' . $lpdata['image_small'] . '" alt="">';
                                     } ?>
                                 </div>
                                 <div class="carrer-btm-cont">
@@ -265,13 +266,13 @@ function local_leeloolxpcareers_course_image($course) {
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <?php foreach ($siblings as $key => $sibling) {
                                     if ($reqlpid == $sibling['id']) {
-                                        echo '<li class="nav-item active"><a class="nav-link" id="myTab' . $key . '-tab" data-toggle="tab" href="#myTab' . $key . '" role="tab" aria-controls="myTab' . $key . '" aria-selected="true">' . $sibling['name'] . '</a></li>';
+                                        echo '<li class="nav-item active"><a class="nav-link" id="myTab' . $key . '-tab" data-toggle="tab" href="#myTab' . $key . '" role="tab" aria-controls="myTab' . $key . '" aria-selected="true">' . $sibling['shortname'] . '</a></li>';
                                     } else {
                                         $lpurl = new moodle_url(
                                             '/local/leeloolxpcareers/plandetails.php',
                                             ['id' => $sibling['id']]
                                         );
-                                        echo '<li class="nav-item"><a href="' . $lpurl . '" class="nav-link" id="myTab' . $key . '-tab">' . $sibling['name'] . '</a></li>';
+                                        echo '<li class="nav-item"><a href="' . $lpurl . '" class="nav-link" id="myTab' . $key . '-tab">' . $sibling['shortname'] . '</a></li>';
                                     }
                                 } ?>
                             </ul>

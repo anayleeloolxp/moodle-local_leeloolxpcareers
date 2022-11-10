@@ -96,7 +96,7 @@ echo $OUTPUT->header();
                     <div class="carrermain-cont-banner">
                         <ul>
                             <?php
-                            echo $countcats = count($response['data']['career_cats']);
+                            $countcats = count($response['data']['career_cats']);
                             foreach ($response['data']['career_cats'] as $careercat) { ?>
                                 <li class="center-carrermain">
                                     <div class="carrermain-item">

@@ -101,6 +101,9 @@ if ($response['data']['catdata']['image_big']) {
         background-image: url(' . $teamniourl . '/' . $response['data']['catdata']['image_big'] . ');
     }</style>';
 }
+$careerhomeurl = new moodle_url(
+    '/local/leeloolxpcareers/index.php'
+);
 ?>
 <div class="row">
     <div class="col-12">
@@ -108,16 +111,21 @@ if ($response['data']['catdata']['image_big']) {
 
             <div class="carrer-main-banner">
                 <div class="container">
-                    <div class="topMain-cont-banner">
-                        <!-- <h2><?php echo $response['data']['catdata']['name']; ?></h2>
+                    <div class="topMain-inn-banner">
+                        <div class="topMain-left-arrow">
+                            <a href="<?php echo $careerhomeurl; ?>" class="btn"><img src="https://vonkelemen.org/online/local/leeloolxpcareers/assets/img/left-aro-img.png" alt=""></a>
+                        </div>
+                        <div class="topMain-cont-banner">
+                            <!-- <h2><?php echo $response['data']['catdata']['name']; ?></h2>
                         <h4><?php echo $response['data']['catdata']['heading']; ?></h4> -->
-                        <?php echo $response['data']['catdata']['heading']; ?>
-                        <div class="gratuita-btn-right">
-                            <div class="gratuita-btn">
-                                <a href="https://vonkelemen.org/leeloo/login">
-                                    <h5>Crear una cuenta gratuita</h5>
-                                    <p>para registrar mi progreso y mis certificaciones</p>
-                                </a>
+                            <?php echo $response['data']['catdata']['heading']; ?>
+                            <div class="gratuita-btn-right">
+                                <div class="gratuita-btn">
+                                    <a href="https://vonkelemen.org/leeloo/login">
+                                        <h5>Crear una cuenta gratuita</h5>
+                                        <p>para registrar mi progreso y mis certificaciones</p>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
