@@ -42,7 +42,26 @@
     font-weight: normal;
     font-style: normal;
 }
-
+.path-local-leeloolxpcareers div#right_menu_div {
+    display: none;
+}
+.path-local-leeloolxpcareers div#video_ifrem {
+    width: 100%;
+}
+.path-local-leeloolxpcareers #maindsadsad{
+    overflow: visible;
+}
+.btn {
+    box-shadow: none !important;
+}
+select {
+    background: #fff url(../img/select-drop.png) no-repeat right 10px center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
 #maindsadsad .main-left-section.main-carrer {
     font-family: 'NunitoSans-Regular' !important;
 }
@@ -55,8 +74,11 @@ div#maindsadsad h4 {
 li {
     line-height: normal;
 }
-.path-local-leeloolxpcareers .mdl-dtl-ttl {
+/* .path-local-leeloolxpcareers .mdl-dtl-ttl {
     display: none;
+} */
+.path-local-leeloolxpcareers .mdl-dtl-ttl {
+    display: block;
 }
 .path-local-leeloolxpcareers div#page {
     max-width: none;
@@ -74,8 +96,14 @@ li {
 .coursesetlist .coursecategory-item {
     background: white;
 }
-#sel2 option:not([value='']), #sel3 option:not([value='']) {
+/* #sel2 option:not([value='']), #sel3 option:not([value='']) {
     display: none;
+} */
+.hideimportant {
+    display: none !important;
+}
+.carrermain-head img,.topMain-left-arrow img {
+    width: auto!important;
 }
 #page-local-leeloolxpcareers-courseset .page-context-header .page-header-headings h1 {
     font-weight: 500;
@@ -98,7 +126,7 @@ li {
     background: url(../img/banner-img-carrerdetails.png) no-repeat center center / cover;
     padding: 40px 0;
     position: relative;
-    min-height: 520px;
+    min-height: 560px;
 }
 .carrer-main-banner::before {
     content: "";
@@ -119,13 +147,23 @@ li {
     width: 100%;
 }
 .carrer-left-video {
-    width: 65%;
+    width: calc(100% - 345px);
 }
 .carrer-right-cont {
-    width: 35%;
+    width: 345px;
     background: rgba(0,0,0,0.7);
     color: #fff;
     padding: 25px;
+    min-height: 480px;
+}
+.carrer-left-video iframe {
+    width: 100%;
+    height: 100%;
+}
+.carrer-top-video iframe {
+    width: 100%;
+    height: auto;
+    min-height: 190px;
 }
 .carrer-head {
     font-size: 24px;
@@ -138,6 +176,9 @@ li {
 }
 .carrer-cont-top {
     padding: 20px 0;
+}
+.carrer-btm-cont .carrer-cont-top {
+    color: #050201;
 }
 .carrer-cont-top h5 {
     font-size: 16px;
@@ -177,7 +218,7 @@ li {
 }
 .carrer-cont-btm p a {
     color: #deb778;
-    font-weight: 600;
+    font-family: 'NunitoSans-Bold' !important;
     text-decoration: underline;
 }
 .ahora-btn a.btn {
@@ -204,8 +245,23 @@ li {
     border-radius: 0;
     box-shadow: none;
 }
+.search-menu-bar .container, .carrer-listing .container,
+.carrer-details .container, .carrer-tab-section .container {
+    max-width: 1440px;
+}
+.carrer-main-banner .container,
+#page-local-leeloolxpcareers-index .search-menu-bar .container {
+    max-width: 1230px;
+}
 .search-menu-bar>.container>.row {
     align-items: center;
+}
+#region-bs-main .search-bar-back .btn {
+    background: none !important;
+    padding: 0;
+}
+#region-bs-main .search-bar-back .btn img {
+    max-height: 47px;
 }
 .search-menu-bar {
     background: #ececec;
@@ -404,9 +460,10 @@ li {
     margin: 0 0 40px;
     font-family: 'NunitoSans-Black';
 }
-#maindsadsad .topMain-cont-banner h4 {
+#maindsadsad .topMain-cont-banner h4, #maindsadsad .topMain-cont-banner h4 strong {
     font-family: 'NunitoSans-Black' !important;
 }
+#maindsadsad .topMain-cont-banner h4 strong,
 .topMain-cont-banner h4 span {
     color: #ffd28a;
 }
@@ -561,6 +618,7 @@ input[type="submit"].Sr-Bar-Btn {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
+    min-height: 300px;
 }
 .carrer-list-items ul li {
     width: 33.3333%;
@@ -570,10 +628,14 @@ input[type="submit"].Sr-Bar-Btn {
     background: #fff;
     padding: 10px;
     box-shadow: 0 0 8px #ccc;
+    min-height: 100%;
+}
+.carrerList-item-img img {
+    width: 100%;
 }
 .carrerList-item-cont {
     text-align: center;
-    padding: 22px 0 10px;
+    padding: 22px 22px 10px;
 }
 .carrerList-item-name {
     font-size: 24px;
@@ -584,9 +646,10 @@ input[type="submit"].Sr-Bar-Btn {
 .carrerList-item-des {
     color: #858585;
     font-size: 16px;
+    min-height: 45px;
 }
 .carrerList-item-btn {
-    margin: 40px 0 0;
+    margin: 20px 0 0;
 }
 .carrerList-item-btn .btn {
     color: #222;
@@ -595,11 +658,19 @@ input[type="submit"].Sr-Bar-Btn {
     font-weight: 600;
     padding: 15px 40px;
     display: inline-block;
+    border-radius: 0;
+}
+.carrerList-item-title {
+    min-height: 110px;
 }
 .carrermain-item {
     background: #e8e8e8;
     padding: 20px 30px;
     text-align: center;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .carrermain-cont-banner>ul {
     margin: 0;
@@ -622,7 +693,7 @@ input[type="submit"].Sr-Bar-Btn {
 .carrermain-pri p strong {
     font-weight: bold;
     font-size: 16px;
-    color: #383838; 
+    color: #383838;
 }
 .carrermain-head {
     padding: 0 0 15px;
@@ -650,10 +721,12 @@ input[type="submit"].Sr-Bar-Btn {
     padding: 15px 0;
     min-height: 230px;
 }
-.carrermain-list p strong {
-    font-weight: 500;
+.carrermain-list>p {
+    color: #383838;
     font-size: 18px;
-    color: #383838; 
+}
+.carrermain-list p strong {
+    font-weight: 600;
 }
 .carrermain-list h6 {
     font-size: 18px;
@@ -673,12 +746,17 @@ input[type="submit"].Sr-Bar-Btn {
     color: #00c2a4;
     font-size: 24px;
     text-transform: uppercase;
-    font-weight: 800;
+}
+.carrermain-pri h3 a {
+    font-family: 'NunitoSans-Black';
+}
+strong {
+    font-family: 'NunitoSans-Bold';
 }
 .carrermain-pri h6 {
     color: #383838;
     font-size: 18px;
-    font-weight: 600;
+    font-family: 'NunitoSans-Bold';
 }
 .carrermain-btn .btn {
     background: #010101 !important;
@@ -706,13 +784,13 @@ input[type="submit"].Sr-Bar-Btn {
     color: #383838;
     margin: 0 0 10px;
 }
-.carrermain-pri h4 {
+.carrermain-pri h5 {
     color: #383838;
-    font-size: 14px;
+    font-size: 12px;
 }
-.carrermain-pri h4 b {
-    font-weight: 800;
-    font-size: 18px;
+.carrermain-pri h5 strong {
+    font-size: 16px;
+    font-family: 'NunitoSans-Black';
 }
 .carrermain-pri p a {
     color: #00c2a4;
@@ -727,7 +805,7 @@ input[type="submit"].Sr-Bar-Btn {
 .carrermain-pri p:nth-child(1) a {
     text-decoration: none;
     font-weight: 700;
-    font-size: 24px; 
+    font-size: 24px;
 }
 .coursecategory-item-cont .coursecategory-item-btn .btn {
     width: auto;
@@ -765,4 +843,33 @@ input[type="submit"].Sr-Bar-Btn {
     background: none !important;
     padding: 0;
     border: none;
+}
+.filter-select .form-group .form-control {
+    border-radius: 0;
+}
+#region-bs-main .filter-select .form-group .bootstrap-select .dropdown-toggle {
+    height: 47px !important;
+    padding: 14px 12px;
+    background: none !important;
+    color: #495057 !important;
+    outline: none !important;
+    border-radius: 0 !important;
+}
+.caret {
+    border-top: 11px solid #495057;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+}
+.dropup .caret {
+    border-bottom: 11px solid #495057;
+}
+.filter-select .dropdown-toggle::after {
+    display: none !important;
+}
+.filter-select .dropdown-menu {
+    box-shadow: none;
+}
+.filter-select .dropdown-menu li.active a,
+.filter-select .dropdown-menu li a:hover {
+    background: rgba(0,0,0,0.7);
 }

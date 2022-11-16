@@ -34,7 +34,7 @@ if (!$reqlpid) {
 
 $PAGE->set_context(get_system_context());
 $PAGE->set_pagelayout('standard');
-$PAGE->set_title("Learning Plan Details");
+
 $PAGE->set_heading("Learning Plan Details");
 $PAGE->set_url($CFG->wwwroot . '/local/leeloolxpcareers/plandetails.php');
 
@@ -98,6 +98,11 @@ $lpdata = $response['data']['lpdata'];
 
 $PAGE->set_title($lpdata['name']);
 $PAGE->set_heading($lpdata['name']);
+
+$backurl = new moodle_url(
+    '/local/leeloolxpcareers/' . $response['data']['parenttype'] . '.php',
+    ['id' => $response['data']['parentid']]
+);
 
 echo $OUTPUT->header();
 
@@ -171,44 +176,53 @@ if ($response['data']['lpdata']['image_big']) {
 
             <div class="search-menu-bar">
                 <div class="container">
-                    <div class="row" id="yui_3_17_2_1_1667024021769_23">
-                        <div class="col-md-4" id="yui_3_17_2_1_1667024021769_22">
-                            <div class="filter-select" id="yui_3_17_2_1_1667024021769_21">
-                                <div class="form-group" id="yui_3_17_2_1_1667024021769_20">
-                                    <select class="form-control" id="sel1">
-                                        <option value="">Nivel educativo</option>
-                                        <?php foreach ($response['data']['filterarr']['career_cats'] as $careercat) {
-                                            echo '<option value="' . $careercat['id'] . '">' . $careercat['name'] . '</option>';
-                                        } ?>
-                                    </select>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="search-bar-back">
+                                <a class="btn" href="<?php echo $backurl; ?>"><img src="https://vonkelemen.org/online/local/leeloolxpcareers/assets/img/Arrowback.png" alt=""></a>
                             </div>
                         </div>
-                        <div class="col-md-4" id="yui_3_17_2_1_1667024021769_34">
-                            <div class="filter-select" id="yui_3_17_2_1_1667024021769_33">
-                                <div class="form-group" id="yui_3_17_2_1_1667024021769_32">
-                                    <select class="form-control" id="sel2">
-                                        <option value="">Carrera</option>
-                                        <?php foreach ($response['data']['filterarr']['careers'] as $career) {
-                                            echo '<option data-parentid="' . $career['category_id'] . '" value="' . $career['id'] . '">' . $career['name'] . '</option>';
-                                        } ?>
-                                    </select>
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="filter-select">
+                                        <div class="form-group">
+                                            <select class="form-control" id="sel1">
+                                                <option value="">Nivel educativo</option>
+                                                <?php foreach ($response['data']['filterarr']['career_cats'] as $careercat) {
+                                                    echo '<option value="' . $careercat['id'] . '">' . $careercat['name'] . '</option>';
+                                                } ?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" id="yui_3_17_2_1_1667024021769_37">
-                            <div class="filter-select" id="yui_3_17_2_1_1667024021769_36">
-                                <div class="form-group" id="yui_3_17_2_1_1667024021769_35">
-                                    <select class="form-control" id="sel3">
-                                        <option value="">Grado académico</option>
-                                        <?php foreach ($response['data']['filterarr']['lps'] as $lp) {
-                                            $lpurl = new moodle_url(
-                                                '/local/leeloolxpcareers/plandetails.php',
-                                                ['id' => $lp['id']]
-                                            );
-                                            echo '<option data-parentid="' . $lp['parent_id'] . '" value="' . $lpurl . '">' . $lp['name'] . '</option>';
-                                        } ?>
-                                    </select>
+                                <div class="col-md-4">
+                                    <div class="filter-select">
+                                        <div class="form-group">
+                                            <select class="form-control" id="sel2">
+                                                <option value="">Carrera</option>
+                                                <?php foreach ($response['data']['filterarr']['careers'] as $career) {
+                                                    echo '<option class="hideimportant sel2options parentcat_' . $career['category_id'] . '" value="' . $career['id'] . '">' . $career['name'] . '</option>';
+                                                } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="filter-select">
+                                        <div class="form-group">
+                                            <select class="form-control" id="sel3">
+                                                <option value="">Grado académico</option>
+                                                <?php foreach ($response['data']['filterarr']['lps'] as $lp) {
+                                                    $lpurl = new moodle_url(
+                                                        '/local/leeloolxpcareers/plandetails.php',
+                                                        ['id' => $lp['id']]
+                                                    );
+                                                    echo '<option class="hideimportant sel3options parentcar_' . $lp['parent_id'] . '" value="' . $lpurl . '">' . $lp['name'] . '</option>';
+                                                } ?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -386,6 +400,19 @@ if ($response['data']['lpdata']['image_big']) {
     </div>
 
 </div>
+<div class="ddstyles">
+    <style id="sel1style"></style>
+    <style id="sel2style"></style>
+</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script>
+    $(function() {
+        $('select').selectpicker({
+            dropupAuto: false
+        });
+    });
+</script>
 <?php
 
 echo $OUTPUT->footer();

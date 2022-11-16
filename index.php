@@ -27,8 +27,8 @@ require_once($CFG->dirroot . '/lib/filelib.php');
 
 $PAGE->set_context(get_system_context());
 $PAGE->set_pagelayout('standard');
-$PAGE->set_title("Careers");
-$PAGE->set_heading("Careers");
+$PAGE->set_title("Career Categories");
+$PAGE->set_heading("Career Categories");
 $PAGE->set_url($CFG->wwwroot . '/local/leeloolxpcareers/index.php');
 
 $PAGE->requires->css('/local/leeloolxpcareers/assets/css/style.css');
@@ -100,28 +100,31 @@ echo $OUTPUT->header();
                             foreach ($response['data']['career_cats'] as $careercat) { ?>
                                 <li class="center-carrermain">
                                     <div class="carrermain-item">
-                                        <div class="carrermain-head">
-                                            <img src="<?php echo $teamniourl . '/' . $careercat['image_small']; ?>" alt="">
-                                            <h3><?php echo $careercat['name']; ?></h3>
-                                        </div>
-
-                                        <!-- <div class="carrermain-for"><?php echo $careercat['description']; ?></div>
-                                        <div class="carrermain-vez"><?php echo $careercat['heading']; ?></div> -->
-                                        <div class="carrermain-list">
-                                            <?php echo $careercat['summary']; ?>
-                                        </div>
-                                        <div class="carrermain-ftr">
-                                            <div class="carrermain-pri">
-                                                <?php echo $careercat['pricing']; ?>
+                                        <div class="carrermain-body">
+                                            <div class="carrermain-head">
+                                                <img src="<?php echo $teamniourl . '/' . $careercat['image_small']; ?>" alt="">
+                                                <h3><?php echo $careercat['name']; ?></h3>
                                             </div>
-                                            <div class="carrermain-btn">
-                                                <?php
-                                                $caturl = new moodle_url(
-                                                    '/local/leeloolxpcareers/careers.php',
-                                                    ['id' => $careercat['id']]
-                                                );
-                                                ?>
-                                                <a href="<?php echo $caturl; ?>" class="btn">VeR carreras</a>
+                                            <!-- <div class="carrermain-for"><?php echo $careercat['description']; ?></div>
+                                            <div class="carrermain-vez"><?php echo $careercat['heading']; ?></div> -->
+                                            <div class="carrermain-list">
+                                                <?php echo $careercat['summary']; ?>
+                                            </div>
+                                        </div>
+                                        <div class="carrermain-footer">
+                                            <div class="carrermain-ftr">
+                                                <div class="carrermain-pri">
+                                                    <?php echo $careercat['pricing']; ?>
+                                                </div>
+                                                <div class="carrermain-btn">
+                                                    <?php
+                                                    $caturl = new moodle_url(
+                                                        '/local/leeloolxpcareers/careers.php',
+                                                        ['id' => $careercat['id']]
+                                                    );
+                                                    ?>
+                                                    <a href="<?php echo $caturl; ?>" class="btn">VeR carreras</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -134,10 +137,10 @@ echo $OUTPUT->header();
 
             <div class="search-menu-bar">
                 <div class="container">
-                    <div class="row" id="yui_3_17_2_1_1667024021769_23">
-                        <div class="col-md-4" id="yui_3_17_2_1_1667024021769_22">
-                            <div class="filter-select" id="yui_3_17_2_1_1667024021769_21">
-                                <div class="form-group" id="yui_3_17_2_1_1667024021769_20">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="filter-select">
+                                <div class="form-group">
                                     <select class="form-control" id="sel1">
                                         <option value="">Nivel educativo</option>
                                         <?php foreach ($response['data']['filterarr']['career_cats'] as $careercat) {
@@ -147,21 +150,21 @@ echo $OUTPUT->header();
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4" id="yui_3_17_2_1_1667024021769_34">
-                            <div class="filter-select" id="yui_3_17_2_1_1667024021769_33">
-                                <div class="form-group" id="yui_3_17_2_1_1667024021769_32">
+                        <div class="col-md-4">
+                            <div class="filter-select">
+                                <div class="form-group">
                                     <select class="form-control" id="sel2">
                                         <option value="">Carrera</option>
                                         <?php foreach ($response['data']['filterarr']['careers'] as $career) {
-                                            echo '<option data-parentid="' . $career['category_id'] . '" value="' . $career['id'] . '">' . $career['name'] . '</option>';
+                                            echo '<option class="hideimportant sel2options parentcat_' . $career['category_id'] . '" value="' . $career['id'] . '">' . $career['name'] . '</option>';
                                         } ?>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4" id="yui_3_17_2_1_1667024021769_37">
-                            <div class="filter-select" id="yui_3_17_2_1_1667024021769_36">
-                                <div class="form-group" id="yui_3_17_2_1_1667024021769_35">
+                        <div class="col-md-4">
+                            <div class="filter-select">
+                                <div class="form-group">
                                     <select class="form-control" id="sel3">
                                         <option value="">Grado académico</option>
                                         <?php foreach ($response['data']['filterarr']['lps'] as $lp) {
@@ -169,7 +172,7 @@ echo $OUTPUT->header();
                                                 '/local/leeloolxpcareers/plandetails.php',
                                                 ['id' => $lp['id']]
                                             );
-                                            echo '<option data-parentid="' . $lp['parent_id'] . '" value="' . $lpurl . '">' . $lp['name'] . '</option>';
+                                            echo '<option class="hideimportant sel3options parentcar_' . $lp['parent_id'] . '" value="' . $lpurl . '">' . $lp['name'] . '</option>';
                                         } ?>
                                     </select>
                                 </div>
@@ -183,6 +186,19 @@ echo $OUTPUT->header();
     </div>
 
 </div>
+<div class="ddstyles">
+    <style id="sel1style"></style>
+    <style id="sel2style"></style>
+</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script>
+    $(function() {
+        $('select').selectpicker({
+            dropupAuto: false
+        });
+    });
+</script>
 <?php
 
 echo $OUTPUT->footer();

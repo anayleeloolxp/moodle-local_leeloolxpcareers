@@ -34,8 +34,8 @@ if (!$reqcatid) {
 
 $PAGE->set_context(get_system_context());
 $PAGE->set_pagelayout('standard');
-$PAGE->set_title("Careers Listing");
-$PAGE->set_heading("Careers Listing");
+
+
 $PAGE->set_url($CFG->wwwroot . '/local/leeloolxpcareers/careers.php');
 
 $PAGE->requires->css('/local/leeloolxpcareers/assets/css/style.css');
@@ -93,7 +93,8 @@ if (!$response = $curl->post($url, $postdata, $options)) {
 }
 
 $response = json_decode($response, true);
-
+$PAGE->set_title($response['data']['catdata']['name']);
+$PAGE->set_heading($response['data']['catdata']['name']);
 echo $OUTPUT->header();
 if ($response['data']['catdata']['image_big']) {
     echo '<style>.carrer-main-banner {
@@ -153,7 +154,7 @@ $careerhomeurl = new moodle_url(
                                     <select class="form-control" id="sel2">
                                         <option value="">Carrera</option>
                                         <?php foreach ($response['data']['filterarr']['careers'] as $career) {
-                                            echo '<option data-parentid="' . $career['category_id'] . '" value="' . $career['id'] . '">' . $career['name'] . '</option>';
+                                            echo '<option class="hideimportant sel2options parentcat_' . $career['category_id'] . '" value="' . $career['id'] . '">' . $career['name'] . '</option>';
                                         } ?>
                                     </select>
                                 </div>
@@ -169,7 +170,7 @@ $careerhomeurl = new moodle_url(
                                                 '/local/leeloolxpcareers/plandetails.php',
                                                 ['id' => $lp['id']]
                                             );
-                                            echo '<option data-parentid="' . $lp['parent_id'] . '" value="' . $lpurl . '">' . $lp['name'] . '</option>';
+                                            echo '<option class="hideimportant sel3options parentcar_' . $lp['parent_id'] . '" value="' . $lpurl . '">' . $lp['name'] . '</option>';
                                         } ?>
                                     </select>
                                 </div>
@@ -224,6 +225,19 @@ $careerhomeurl = new moodle_url(
     </div>
 
 </div>
+<div class="ddstyles">
+    <style id="sel1style"></style>
+    <style id="sel2style"></style>
+</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script>
+    $(function() {
+        $('select').selectpicker({
+            dropupAuto: false
+        });
+    });
+</script>
 <?php
 
 echo $OUTPUT->footer();

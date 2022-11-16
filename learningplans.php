@@ -34,8 +34,7 @@ if (!$reqcareerid) {
 
 $PAGE->set_context(get_system_context());
 $PAGE->set_pagelayout('standard');
-$PAGE->set_title("Learning Plans Listing");
-$PAGE->set_heading("Learning Plans Listing");
+
 $PAGE->set_url($CFG->wwwroot . '/local/leeloolxpcareers/learningplans.php');
 
 $PAGE->requires->css('/local/leeloolxpcareers/assets/css/style.css');
@@ -94,6 +93,9 @@ if (!$response = $curl->post($url, $postdata, $options)) {
 
 $response = json_decode($response, true);
 
+$PAGE->set_title($response['data']['lpdata']['name']);
+$PAGE->set_heading($response['data']['lpdata']['name']);
+
 echo $OUTPUT->header();
 if ($response['data']['lpdata']['image_big']) {
     echo '<style>.carrer-main-banner {
@@ -101,6 +103,12 @@ if ($response['data']['lpdata']['image_big']) {
         background-image: url(' . $teamniourl . '/' . $response['data']['lpdata']['image_big'] . ');
     }</style>';
 }
+
+$backurl = new moodle_url(
+    '/local/leeloolxpcareers/careers.php',
+    ['id' => $response['data']['lpdata']['category_id']]
+);
+
 ?>
 <div class="row">
     <div class="col-12">
@@ -110,7 +118,7 @@ if ($response['data']['lpdata']['image_big']) {
                 <div class="container">
                     <div class="topMain-inn-banner">
                         <div class="topMain-left-arrow">
-                            <a href="javascript:history.back()"><img src="https://vonkelemen.org/online/local/leeloolxpcareers/assets/img/left-aro-img.png" alt=""></a>
+                            <a href="<?php echo $backurl; ?>"><img src="https://vonkelemen.org/online/local/leeloolxpcareers/assets/img/left-aro-img.png" alt=""></a>
                         </div>
                         <div class="topMain-cont-banner">
                             <!-- <h2><?php echo $response['data']['lpdata']['name']; ?></h2>
@@ -150,7 +158,7 @@ if ($response['data']['lpdata']['image_big']) {
                                     <select class="form-control" id="sel2">
                                         <option value="">Carrera</option>
                                         <?php foreach ($response['data']['filterarr']['careers'] as $career) {
-                                            echo '<option data-parentid="' . $career['category_id'] . '" value="' . $career['id'] . '">' . $career['name'] . '</option>';
+                                            echo '<option class="hideimportant sel2options parentcat_' . $career['category_id'] . '" value="' . $career['id'] . '">' . $career['name'] . '</option>';
                                         } ?>
                                     </select>
                                 </div>
@@ -166,7 +174,7 @@ if ($response['data']['lpdata']['image_big']) {
                                                 '/local/leeloolxpcareers/plandetails.php',
                                                 ['id' => $lp['id']]
                                             );
-                                            echo '<option data-parentid="' . $lp['parent_id'] . '" value="' . $lpurl . '">' . $lp['name'] . '</option>';
+                                            echo '<option class="hideimportant sel3options parentcar_' . $lp['parent_id'] . '" value="' . $lpurl . '">' . $lp['name'] . '</option>';
                                         } ?>
                                     </select>
                                 </div>
@@ -214,6 +222,19 @@ if ($response['data']['lpdata']['image_big']) {
     </div>
 
 </div>
+<div class="ddstyles">
+    <style id="sel1style"></style>
+    <style id="sel2style"></style>
+</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script>
+    $(function() {
+        $('select').selectpicker({
+            dropupAuto: false
+        });
+    });
+</script>
 <?php
 
 echo $OUTPUT->footer();
