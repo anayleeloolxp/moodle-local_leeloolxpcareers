@@ -194,9 +194,7 @@ echo $OUTPUT->header();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 <script>
     $(function() {
-        $('select').selectpicker({
-            dropupAuto: false
-        });
+        $('select').selectpicker({});
     });
 </script>
 <?php
