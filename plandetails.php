@@ -139,6 +139,8 @@ if ($response['data']['lpdata']['image_big']) {
         background-image: url(' . $teamniourl . '/' . $response['data']['lpdata']['image_big'] . ');
     }</style>';
 }
+
+$plancoursematricular = array();
 ?>
 <div class="row">
     <div class="col-12">
@@ -164,7 +166,7 @@ if ($response['data']['lpdata']['image_big']) {
                                     <?php echo $lpdata['summary']; ?>
                                 </div>
                                 <div class="carrer-cont-btm">
-                                    <div class="ahora-btn"><a class="btn" href="#">Matricular ahora</a></div>
+                                    <div class="ahora-btn"><a class="Matricularplan btn" href="#" data-toggle="modal" data-target="#myModal_enrolplan">Matricular ahora</a></div>
                                     <p>Vives en América Latina?</p>
                                     <p><a href="https://vonkelemen.org/leeloo/aplicacion-beca">Aplicar para una beca</a></p>
                                 </div>
@@ -257,7 +259,7 @@ if ($response['data']['lpdata']['image_big']) {
                                             <?php echo $lpdata['summary']; ?>
                                         </div>
                                         <div class="carrer-cont-btm">
-                                            <div class="ahora-btn"><a class="btn" href="#">Matricular ahora</a></div>
+                                            <div class="ahora-btn"><a class="Matricularplan btn" href="#" data-toggle="modal" data-target="#myModal_enrolplan">Matricular ahora</a></div>
                                             <p>Vives en América Latina?</p>
                                             <p><a href="https://vonkelemen.org/leeloo/aplicacion-beca">Aplicar para una beca</a></p>
                                         </div>
@@ -357,7 +359,101 @@ if ($response['data']['lpdata']['image_big']) {
                                                                                     <a href="<?php echo $instanceurl; ?>"><?php echo $instance['instancename']; ?></a>
                                                                                 </div>
                                                                                 <div class="carrer-item-btn">
-                                                                                    <a href="#" class="btn btn-light">Matricular</a>
+                                                                                    <?php
+                                                                                    if ($instance['type'] == 'courses') {
+                                                                                        $selfenrol = $DB->get_record('enrol', array(
+                                                                                            'courseid' => $instance['instanceid'],
+                                                                                            'enrol' => 'self',
+                                                                                            'status' => '0'
+                                                                                        ));
+
+                                                                                        $coursecontext = context_course::instance($instance['instanceid']);
+
+                                                                                        if ($selfenrol && !is_enrolled($coursecontext, $USER->id)) {
+                                                                                            $plancoursematricular[] = $instance['instanceid'];
+                                                                                            echo $matrihtml = '<a class="myModal_enrol_link enrollicon btn btn-light" data-toggle="modal" data-target="#myModal_enrol' . $instance['instanceid'] . '">Matricular Gratis</a>
+
+                                                                                        <div id="myModal_enrol' . $instance['instanceid'] . '" class="modal fade myModal_enrol" role="dialog">
+                                                                                                <div class="modal-dialog">
+
+                                                                                                    <!-- Modal content-->
+                                                                                                    <div class="modal-content">
+                                                                                                        <div class="modal-header">
+                                                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                                            <h4 class="modal-title">' . $instance['instancename'] . '</h4>
+                                                                                                        </div>
+                                                                                                        <div class="modal-body">
+                                                                                                        <form autocomplete="off" action="' . $CFG->wwwroot . '/enrol/index.php" method="post" accept-charset="utf-8" class="mform" data-boost-form-errors-enhanced="1">
+                                                                                                            <div style="display: none;">
+                                                                                                            <input name="id" type="hidden" value="' . $instance['instanceid'] . '">
+                                                                                                            <input name="instance" type="hidden" value="' . $selfenrol->id . '">
+                                                                                                            <input name="sesskey" type="hidden" value="' . sessKey() . '">
+                                                                                                            <input type="password" class="form-control " name="enrolpassword" id="enrolpassword_' . $selfenrol->id . '" value="' . $selfenrol->password . '" autocomplete="off">
+                                                                                                            <input name="_qf__' . $selfenrol->id . '_enrol_self_enrol_form" type="hidden" value="1">
+                                                                                                            <input name="mform_isexpanded_id_selfheader" type="hidden" value="1">
+                                                                                                            </div>
+                                                                                                            <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="Matricularme">
+                                                                                                        </form>
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                            </div>';
+                                                                                        }
+                                                                                    } else {
+                                                                                        $coursesetcoursematricular = array();
+
+                                                                                        foreach ($instance['subcourses'] as $inscourse) {
+                                                                                            $selfenrol = $DB->get_record('enrol', array(
+                                                                                                'courseid' => $inscourse['courseid'],
+                                                                                                'enrol' => 'self',
+                                                                                                'status' => '0'
+                                                                                            ));
+                                                                                            $coursecontext = context_course::instance($inscourse['courseid']);
+
+                                                                                            if ($selfenrol && !is_enrolled($coursecontext, $USER->id)) {
+                                                                                                $coursesetcoursematricular[] = $inscourse['courseid'];
+                                                                                                $plancoursematricular[] = $inscourse['courseid'];
+                                                                                            }
+                                                                                        }
+
+                                                                                        if ($coursesetcoursematricular) {
+                                                                                            $inputcourses = '';
+                                                                                            foreach ($coursesetcoursematricular as $couretoenrol) {
+                                                                                                $inputcourses .= '<input name="courestoenrol[]" type="hidden" value="' . $couretoenrol . '">';
+                                                                                            }
+
+                                                                                            echo $matrihtml = '<a class="myModal_enrol_link enrollicon btn btn-light" data-toggle="modal" data-target="#myModal_enrolset' . $instance['instanceid'] . '">Matricular Gratis</a>
+
+                                                                                            <div id="myModal_enrolset' . $instance['instanceid'] . '" class="modal fade myModal_enrol" role="dialog">
+                                                                                            <div class="modal-dialog">
+
+                                                                                                <!-- Modal content-->
+                                                                                                <div class="modal-content">
+                                                                                                    <div class="modal-header">
+                                                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                                        <h4 class="modal-title">' . $instance['instancename'] . '</h4>
+                                                                                                    </div>
+                                                                                                    <div class="modal-body">
+                                                                                                    <form autocomplete="off" action="' . $CFG->wwwroot . '/local/leeloolxpcareers/enrollsets.php" method="post" accept-charset="utf-8" class="mform" data-boost-form-errors-enhanced="1">
+                                                                                                        <div style="display: none;">
+                                                                                                            <input name="type" type="hidden" value="plandetails">
+                                                                                                            <input name="instance" type="hidden" value="' . $reqlpid . '">
+                                                                                                            <input name="sesskey" type="hidden" value="' . sessKey() . '">
+                                                                                                            ' . $inputcourses . '
+
+                                                                                                        </div>
+                                                                                                        <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="Matricularme">
+                                                                                                    </form>
+                                                                                                    </div>
+
+                                                                                                </div>
+
+                                                                                            </div>
+                                                                                        </div>';
+                                                                                        }
+                                                                                    } ?>
                                                                                 </div>
                                                                                 <div class="carrer-item-title">
                                                                                     <div style="visibility: hidden;" class="carrer-item-name">1 de Noviembre 2022</div>
@@ -400,6 +496,47 @@ if ($response['data']['lpdata']['image_big']) {
     </div>
 
 </div>
+
+<?php
+if ($plancoursematricular) {
+    $inputcourses = '';
+    foreach ($plancoursematricular as $couretoenrol) {
+        $inputcourses .= '<input name="courestoenrol[]" type="hidden" value="' . $couretoenrol . '">';
+    }
+
+    echo $planmatrihtml = '
+
+    <div id="myModal_enrolplan" class="modal fade myModal_enrol" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">' . $lpdata['name'] . '</h4>
+            </div>
+            <div class="modal-body">
+            <form autocomplete="off" action="' . $CFG->wwwroot . '/local/leeloolxpcareers/enrollsets.php" method="post" accept-charset="utf-8" class="mform" data-boost-form-errors-enhanced="1">
+                <div style="display: none;">
+                    <input name="type" type="hidden" value="plandetails">
+                    <input name="instance" type="hidden" value="' . $reqlpid . '">
+                    <input name="sesskey" type="hidden" value="' . sessKey() . '">
+                    ' . $inputcourses . '
+
+                </div>
+                <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="Matricularme">
+            </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>';
+} else {
+    echo '<style>.Matricularplan{ display:none; }</style>';
+}
+?>
+
 <div class="ddstyles">
     <style id="sel1style"></style>
     <style id="sel2style"></style>

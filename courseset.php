@@ -151,6 +151,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+$coursesetcoursematricular = array();
 ?>
 <div id="wrapper">
 
@@ -235,6 +236,7 @@ if ($conn->connect_error) {
                                                     $coursecontext = context_course::instance($course['courseid']);
 
                                                     if ($selfenrol && !is_enrolled($coursecontext, $USER->id)) {
+                                                        $coursesetcoursematricular[] = $course['courseid'];
                                                         echo $matrihtml = '<a class="myModal_enrol_link enrollicon btn btn-light" data-toggle="modal" data-target="#myModal_enrol' . $course['courseid'] . '">Matricular Gratis</a>
 
                                                         <div id="myModal_enrol' . $course['courseid'] . '" class="modal fade myModal_enrol" role="dialog">
@@ -348,13 +350,17 @@ if ($conn->connect_error) {
                         <div class="col-md-6" id="">
                             <div class="bottom-bar-btn text-center" id="">
 
-                                <div class="bottom-bar-div">
-                                    <button class="btn">Matricular gratis</button>
-                                </div>
-                                <div class="bottom-bar-div">
+                                <?php if ($coursesetcoursematricular) {
+
+                                ?>
+                                    <div class="bottom-bar-div">
+                                        <button class="btn" data-toggle="modal" data-target="#myModal_enrolset">Matricular gratis</button>
+                                    </div>
+                                <?php } ?>
+                                <!-- <div class="bottom-bar-div">
 
 
-                                </div>
+                                </div> -->
 
                             </div>
                         </div>
@@ -368,6 +374,35 @@ if ($conn->connect_error) {
 
 
 
+
+    <div id="myModal_enrolset" class="modal fade myModal_enrol" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><?php echo $coursesetdata['name']; ?></h4>
+                </div>
+                <div class="modal-body">
+                    <form autocomplete="off" action="<?php echo $CFG->wwwroot . '/local/leeloolxpcareers/enrollsets.php'; ?>" method="post" accept-charset="utf-8" class="mform" data-boost-form-errors-enhanced="1">
+                        <div style="display: none;">
+                            <input name="type" type="hidden" value="courseset">
+                            <input name="instance" type="hidden" value="<?php echo $reqcoursesetid; ?>">
+                            <input name="sesskey" type="hidden" value="<?php echo sessKey(); ?>">
+                            <?php foreach ($coursesetcoursematricular as $couretoenrol) {
+                                echo '<input name="courestoenrol[]" type="hidden" value="' . $couretoenrol . '">';
+                            } ?>
+
+                        </div>
+                        <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="Matricularme">
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 
     <div class="modal fade overview_skill" id="overview_skill" tabindex="-1" role="dialog" aria-labelledby="overview_skill" aria-hidden="true" style="display: none;">
         <div class="modal-dialog" role="document" id="">
