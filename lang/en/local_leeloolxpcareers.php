@@ -26,3 +26,26 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Leeloo LXP Careers';
+$string['successfullyenrolled'] = 'You are successfully enrolled.';
+$string['viewcareers'] = 'VeR carreras';
+$string['nivel'] = 'Nivel educativo';
+$string['career'] = 'Carrera';
+$string['grado'] = 'Grado académico';
+$string['viewdetails'] = 'VER DETALLES';
+$string['matricularme'] = 'Matricularme';
+$string['matricularahora'] = 'Matricular ahora';
+$string['matriculargratis'] = 'Matricular Gratis';
+$string['viewdetailcontent'] = 'Ver detailes y contenido';
+$string['certificar'] = 'Certificar';
+$string['intro'] = 'intro';
+$string['overview'] = 'Overview';
+$string['videolessons'] = 'videos lessons';
+$string['modules'] = 'modules';
+$string['learningactivities'] = 'learning activities';
+$string['aboutcourse'] = 'About this course';
+$string['applynow'] = '<p>Vives en América Latina?</p>
+<p><a href="https://vonkelemen.org/leeloo/aplicacion-beca">Aplicar para una beca</a></p>';
+$string['createaccount'] = '<a href="https://vonkelemen.org/leeloo/login">
+<h5>Crear una cuenta gratuita</h5>
+<p>para registrar mi progreso y mis certificaciones</p>
+</a>';

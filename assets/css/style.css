@@ -42,6 +42,13 @@
     font-weight: normal;
     font-style: normal;
 }
+.path-local-leeloolxpcareers span#user-notifications {
+    position: absolute;
+    z-index: 9;
+    width: 300px;
+    top: 150px;
+    margin-left: calc(50% - 150px);
+}
 .path-local-leeloolxpcareers div#right_menu_div {
     display: none;
 }

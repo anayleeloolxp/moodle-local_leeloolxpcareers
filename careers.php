@@ -122,10 +122,7 @@ $careerhomeurl = new moodle_url(
                             <?php echo $response['data']['catdata']['heading']; ?>
                             <div class="gratuita-btn-right">
                                 <div class="gratuita-btn">
-                                    <a href="https://vonkelemen.org/leeloo/login">
-                                        <h5>Crear una cuenta gratuita</h5>
-                                        <p>para registrar mi progreso y mis certificaciones</p>
-                                    </a>
+                                    <?php echo get_string('createaccount', 'local_leeloolxpcareers'); ?>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +137,7 @@ $careerhomeurl = new moodle_url(
                             <div class="filter-select">
                                 <div class="form-group">
                                     <select class="form-control" id="sel1">
-                                        <option value="">Nivel educativo</option>
+                                        <option value=""><?php echo get_string('nivel', 'local_leeloolxpcareers'); ?></option>
                                         <?php foreach ($response['data']['filterarr']['career_cats'] as $careercat) {
                                             echo '<option value="' . $careercat['id'] . '">' . $careercat['name'] . '</option>';
                                         } ?>
@@ -152,7 +149,7 @@ $careerhomeurl = new moodle_url(
                             <div class="filter-select">
                                 <div class="form-group">
                                     <select class="form-control" id="sel2">
-                                        <option value="">Carrera</option>
+                                        <option value=""><?php echo get_string('career', 'local_leeloolxpcareers'); ?></option>
                                         <?php foreach ($response['data']['filterarr']['careers'] as $career) {
                                             echo '<option class="hideimportant sel2options parentcat_' . $career['category_id'] . '" value="' . $career['id'] . '">' . $career['name'] . '</option>';
                                         } ?>
@@ -164,7 +161,7 @@ $careerhomeurl = new moodle_url(
                             <div class="filter-select">
                                 <div class="form-group">
                                     <select class="form-control" id="sel3">
-                                        <option value="">Grado académico</option>
+                                        <option value=""><?php echo get_string('grado', 'local_leeloolxpcareers'); ?></option>
                                         <?php foreach ($response['data']['filterarr']['lps'] as $lp) {
                                             $lpurl = new moodle_url(
                                                 '/local/leeloolxpcareers/plandetails.php',
@@ -210,7 +207,7 @@ $careerhomeurl = new moodle_url(
                                                     );
                                                 }
                                                 ?>
-                                                <a href="<?php echo $careerurl; ?>" class="btn">VER DETALLES</a>
+                                                <a href="<?php echo $careerurl; ?>" class="btn"><?php echo get_string('viewdetails', 'local_leeloolxpcareers'); ?></a>
                                             </div>
                                         </div>
                                     </div>

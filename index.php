@@ -123,7 +123,7 @@ echo $OUTPUT->header();
                                                         ['id' => $careercat['id']]
                                                     );
                                                     ?>
-                                                    <a href="<?php echo $caturl; ?>" class="btn">VeR carreras</a>
+                                                    <a href="<?php echo $caturl; ?>" class="btn"><?php echo get_string('viewcareers', 'local_leeloolxpcareers'); ?></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -142,7 +142,7 @@ echo $OUTPUT->header();
                             <div class="filter-select">
                                 <div class="form-group">
                                     <select class="form-control" id="sel1">
-                                        <option value="">Nivel educativo</option>
+                                        <option value=""><?php echo get_string('nivel', 'local_leeloolxpcareers'); ?></option>
                                         <?php foreach ($response['data']['filterarr']['career_cats'] as $careercat) {
                                             echo '<option value="' . $careercat['id'] . '">' . $careercat['name'] . '</option>';
                                         } ?>
@@ -154,7 +154,7 @@ echo $OUTPUT->header();
                             <div class="filter-select">
                                 <div class="form-group">
                                     <select class="form-control" id="sel2">
-                                        <option value="">Carrera</option>
+                                        <option value=""><?php echo get_string('career', 'local_leeloolxpcareers'); ?></option>
                                         <?php foreach ($response['data']['filterarr']['careers'] as $career) {
                                             echo '<option class="hideimportant sel2options parentcat_' . $career['category_id'] . '" value="' . $career['id'] . '">' . $career['name'] . '</option>';
                                         } ?>
@@ -166,7 +166,7 @@ echo $OUTPUT->header();
                             <div class="filter-select">
                                 <div class="form-group">
                                     <select class="form-control" id="sel3">
-                                        <option value="">Grado académico</option>
+                                        <option value=""><?php echo get_string('grado', 'local_leeloolxpcareers'); ?></option>
                                         <?php foreach ($response['data']['filterarr']['lps'] as $lp) {
                                             $lpurl = new moodle_url(
                                                 '/local/leeloolxpcareers/plandetails.php',

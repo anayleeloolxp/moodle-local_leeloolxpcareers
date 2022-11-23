@@ -222,7 +222,7 @@ $coursesetcoursematricular = array();
                                                     </div>
                                                 </div>
                                                 <div class="coursecategory-item-list">
-                                                    <a href="<?php echo $courseurl; ?>">Ver detailes y contenido</a>
+                                                    <a href="<?php echo $courseurl; ?>"><?php echo get_string('viewdetailcontent', 'local_leeloolxpcareers'); ?></a>
                                                 </div>
                                                 <div class="coursecategory-item-btn">
                                                     <?php
@@ -237,7 +237,7 @@ $coursesetcoursematricular = array();
 
                                                     if ($selfenrol && !is_enrolled($coursecontext, $USER->id)) {
                                                         $coursesetcoursematricular[] = $course['courseid'];
-                                                        echo $matrihtml = '<a class="myModal_enrol_link enrollicon btn btn-light" data-toggle="modal" data-target="#myModal_enrol' . $course['courseid'] . '">Matricular Gratis</a>
+                                                        echo $matrihtml = '<a class="myModal_enrol_link enrollicon btn btn-light" data-toggle="modal" data-target="#myModal_enrol' . $course['courseid'] . '">' . get_string('matriculargratis', 'local_leeloolxpcareers') . '</a>
 
                                                         <div id="myModal_enrol' . $course['courseid'] . '" class="modal fade myModal_enrol" role="dialog">
                                                                 <div class="modal-dialog">
@@ -258,7 +258,7 @@ $coursesetcoursematricular = array();
                                                                             <input name="_qf__' . $selfenrol->id . '_enrol_self_enrol_form" type="hidden" value="1">
                                                                             <input name="mform_isexpanded_id_selfheader" type="hidden" value="1">
                                                                             </div>
-                                                                            <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="Matricularme">
+                                                                            <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="' . get_string('matricularme', 'local_leeloolxpcareers') . '">
                                                                         </form>
                                                                         </div>
 
@@ -301,7 +301,7 @@ $coursesetcoursematricular = array();
                                                             </div>
                                                         </div>
 
-                                                        <button class="btn btn-primary myModal_hika_link" link="' . $product_url . '" data-toggle="modal" data-target="#myModal_hika' . $course['courseid'] . '">Certificar</button>';
+                                                        <button class="btn btn-primary myModal_hika_link" link="' . $product_url . '" data-toggle="modal" data-target="#myModal_hika' . $course['courseid'] . '">' . get_string('certificar', 'local_leeloolxpcareers') . '</button>';
                                                     }
                                                     ?>
                                                 </div>
@@ -323,7 +323,7 @@ $coursesetcoursematricular = array();
                                 <button type="button" class="btn" data-toggle="modal" data-target="#introModal" id="">
                                     <div class="gami-tab-itm" id="">
                                         <div class="gami-tab-icon" id=""><img src="<?php echo $CFG->wwwroot . '/local/leeloolxpcareers/assets/img/pl-bk.png'; ?>"></div>
-                                        <span>intro</span>
+                                        <span><?php echo get_string('intro', 'local_leeloolxpcareers'); ?></span>
                                     </div>
                                 </button>
                             </li>
@@ -331,7 +331,7 @@ $coursesetcoursematricular = array();
                                 <button type="button" class="btn" data-toggle="modal" data-target="#overview_skill" id="">
                                     <div class="gami-tab-itm" id="">
                                         <div class="gami-tab-icon" id=""><img src="<?php echo $CFG->wwwroot . '/local/leeloolxpcareers/assets/img/overview.png'; ?>" id=""></div>
-                                        <span>Overview</span>
+                                        <span><?php echo get_string('overview', 'local_leeloolxpcareers'); ?></span>
                                     </div>
                                 </button>
                             </li>
@@ -354,7 +354,7 @@ $coursesetcoursematricular = array();
 
                                 ?>
                                     <div class="bottom-bar-div">
-                                        <button class="btn" data-toggle="modal" data-target="#myModal_enrolset">Matricular gratis</button>
+                                        <button class="btn" data-toggle="modal" data-target="#myModal_enrolset"><?php echo get_string('matriculargratis', 'local_leeloolxpcareers'); ?></button>
                                     </div>
                                 <?php } ?>
                                 <!-- <div class="bottom-bar-div">
@@ -395,7 +395,7 @@ $coursesetcoursematricular = array();
                             } ?>
 
                         </div>
-                        <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="Matricularme">
+                        <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="<?php echo get_string('matricularme', 'local_leeloolxpcareers'); ?>">
                     </form>
                 </div>
 
@@ -437,7 +437,7 @@ $coursesetcoursematricular = array();
                                             </span>
                                         </div>
                                         <div class="mod-cont">
-                                            <h3><span><?php echo $videos; ?></span> <small>videos lessons</small></h3>
+                                            <h3><span><?php echo $videos; ?></span> <small><?php echo get_string('videolessons', 'local_leeloolxpcareers'); ?></small></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -449,7 +449,7 @@ $coursesetcoursematricular = array();
                                             </span>
                                         </div>
                                         <div class="mod-cont">
-                                            <h3><span><?php echo $modules; ?></span> <small>modules</small></h3>
+                                            <h3><span><?php echo $modules; ?></span> <small><?php echo get_string('modules', 'local_leeloolxpcareers'); ?></small></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -461,7 +461,7 @@ $coursesetcoursematricular = array();
                                             </span>
                                         </div>
                                         <div class="mod-cont">
-                                            <h3><span><?php echo $activities; ?></span> <small>learning activities</small></h3>
+                                            <h3><span><?php echo $activities; ?></span> <small><?php echo get_string('learningactivities', 'local_leeloolxpcareers'); ?></small></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -472,7 +472,7 @@ $coursesetcoursematricular = array();
                             <div class="row">
                                 <div class="col-12">
                                     <div class="abt-txt-left">
-                                        <div class="abt-txt-head">About this course</div>
+                                        <div class="abt-txt-head"><?php echo get_string('aboutcourse', 'local_leeloolxpcareers'); ?></div>
                                         <div class="abt-in-txt">
                                             <?php echo $coursesetdata['description']; ?>
                                         </div>

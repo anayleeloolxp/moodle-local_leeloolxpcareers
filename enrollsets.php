@@ -79,4 +79,4 @@ if ($USER->id) {
     }
 }
 $urltogo = $CFG->wwwroot . '/local/leeloolxpcareers/' . $reqtype . '.php?id=' . $reqinstance;
-redirect($urltogo);
+redirect($urltogo,  get_string('successfullyenrolled', 'local_leeloolxpcareers'));

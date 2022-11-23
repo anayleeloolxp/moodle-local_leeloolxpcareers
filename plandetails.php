@@ -166,9 +166,8 @@ $plancoursematricular = array();
                                     <?php echo $lpdata['summary']; ?>
                                 </div>
                                 <div class="carrer-cont-btm">
-                                    <div class="ahora-btn"><a class="Matricularplan btn" href="#" data-toggle="modal" data-target="#myModal_enrolplan">Matricular ahora</a></div>
-                                    <p>Vives en América Latina?</p>
-                                    <p><a href="https://vonkelemen.org/leeloo/aplicacion-beca">Aplicar para una beca</a></p>
+                                    <div class="ahora-btn"><a class="Matricularplan btn" href="#" data-toggle="modal" data-target="#myModal_enrolplan"><?php echo get_string('matricularahora', 'local_leeloolxpcareers'); ?></a></div>
+                                    <?php echo get_string('applynow', 'local_leeloolxpcareers'); ?>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +189,7 @@ $plancoursematricular = array();
                                     <div class="filter-select">
                                         <div class="form-group">
                                             <select class="form-control" id="sel1">
-                                                <option value="">Nivel educativo</option>
+                                                <option value=""><?php echo get_string('nivel', 'local_leeloolxpcareers'); ?></option>
                                                 <?php foreach ($response['data']['filterarr']['career_cats'] as $careercat) {
                                                     echo '<option value="' . $careercat['id'] . '">' . $careercat['name'] . '</option>';
                                                 } ?>
@@ -202,7 +201,7 @@ $plancoursematricular = array();
                                     <div class="filter-select">
                                         <div class="form-group">
                                             <select class="form-control" id="sel2">
-                                                <option value="">Carrera</option>
+                                                <option value=""><?php echo get_string('career', 'local_leeloolxpcareers'); ?></option>
                                                 <?php foreach ($response['data']['filterarr']['careers'] as $career) {
                                                     echo '<option class="hideimportant sel2options parentcat_' . $career['category_id'] . '" value="' . $career['id'] . '">' . $career['name'] . '</option>';
                                                 } ?>
@@ -214,7 +213,7 @@ $plancoursematricular = array();
                                     <div class="filter-select">
                                         <div class="form-group">
                                             <select class="form-control" id="sel3">
-                                                <option value="">Grado académico</option>
+                                                <option value=""><?php echo get_string('grado', 'local_leeloolxpcareers'); ?></option>
                                                 <?php foreach ($response['data']['filterarr']['lps'] as $lp) {
                                                     $lpurl = new moodle_url(
                                                         '/local/leeloolxpcareers/plandetails.php',
@@ -259,9 +258,8 @@ $plancoursematricular = array();
                                             <?php echo $lpdata['summary']; ?>
                                         </div>
                                         <div class="carrer-cont-btm">
-                                            <div class="ahora-btn"><a class="Matricularplan btn" href="#" data-toggle="modal" data-target="#myModal_enrolplan">Matricular ahora</a></div>
-                                            <p>Vives en América Latina?</p>
-                                            <p><a href="https://vonkelemen.org/leeloo/aplicacion-beca">Aplicar para una beca</a></p>
+                                            <div class="ahora-btn"><a class="Matricularplan btn" href="#" data-toggle="modal" data-target="#myModal_enrolplan"><?php echo get_string('matricularahora', 'local_leeloolxpcareers'); ?></a></div>
+                                            <?php echo get_string('applynow', 'local_leeloolxpcareers'); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -371,7 +369,7 @@ $plancoursematricular = array();
 
                                                                                         if ($selfenrol && !is_enrolled($coursecontext, $USER->id)) {
                                                                                             $plancoursematricular[] = $instance['instanceid'];
-                                                                                            echo $matrihtml = '<a class="myModal_enrol_link enrollicon btn btn-light" data-toggle="modal" data-target="#myModal_enrol' . $instance['instanceid'] . '">Matricular Gratis</a>
+                                                                                            echo $matrihtml = '<a class="myModal_enrol_link enrollicon btn btn-light" data-toggle="modal" data-target="#myModal_enrol' . $instance['instanceid'] . '">' . get_string('matriculargratis', 'local_leeloolxpcareers') . '</a>
 
                                                                                         <div id="myModal_enrol' . $instance['instanceid'] . '" class="modal fade myModal_enrol" role="dialog">
                                                                                                 <div class="modal-dialog">
@@ -392,7 +390,7 @@ $plancoursematricular = array();
                                                                                                             <input name="_qf__' . $selfenrol->id . '_enrol_self_enrol_form" type="hidden" value="1">
                                                                                                             <input name="mform_isexpanded_id_selfheader" type="hidden" value="1">
                                                                                                             </div>
-                                                                                                            <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="Matricularme">
+                                                                                                            <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="' . get_string('matricularme', 'local_leeloolxpcareers') . '">
                                                                                                         </form>
                                                                                                         </div>
 
@@ -424,7 +422,7 @@ $plancoursematricular = array();
                                                                                                 $inputcourses .= '<input name="courestoenrol[]" type="hidden" value="' . $couretoenrol . '">';
                                                                                             }
 
-                                                                                            echo $matrihtml = '<a class="myModal_enrol_link enrollicon btn btn-light" data-toggle="modal" data-target="#myModal_enrolset' . $instance['instanceid'] . '">Matricular Gratis</a>
+                                                                                            echo $matrihtml = '<a class="myModal_enrol_link enrollicon btn btn-light" data-toggle="modal" data-target="#myModal_enrolset' . $instance['instanceid'] . '">' . get_string('matriculargratis', 'local_leeloolxpcareers') . '</a>
 
                                                                                             <div id="myModal_enrolset' . $instance['instanceid'] . '" class="modal fade myModal_enrol" role="dialog">
                                                                                             <div class="modal-dialog">
@@ -444,7 +442,7 @@ $plancoursematricular = array();
                                                                                                             ' . $inputcourses . '
 
                                                                                                         </div>
-                                                                                                        <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="Matricularme">
+                                                                                                        <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="' . get_string('matricularme', 'local_leeloolxpcareers') . '">
                                                                                                     </form>
                                                                                                     </div>
 
@@ -524,7 +522,7 @@ if ($plancoursematricular) {
                     ' . $inputcourses . '
 
                 </div>
-                <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="Matricularme">
+                <input type="submit" class=" btn-primary" name="submitbutton" id="id_submitbutton" value="' . get_string('matricularme', 'local_leeloolxpcareers') . '">
             </form>
             </div>
 
