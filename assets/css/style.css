@@ -881,3 +881,6 @@ strong {
 .filter-select .dropdown-menu li a:hover {
     background: rgba(0,0,0,0.7);
 }
+.myModal_enrol .modal-content, .myModal_hika .modal-content {
+    top: 100px;
+}
