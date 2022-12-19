@@ -180,6 +180,13 @@ $coursesetcoursematricular = array();
 
                                 foreach ($courses as $course) {
 
+                                    $getcourse = $DB->get_record('course', array(
+                                        'id' => $course['courseid']
+                                    ));
+                                    if (!$getcourse) {
+                                        continue;
+                                    }
+
                                     $modinfo = get_fast_modinfo($course['courseid']);
                                     foreach ($modinfo->sections as $section) {
                                         $activities += count($section);
