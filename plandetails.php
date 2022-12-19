@@ -322,13 +322,23 @@ $plancoursematricular = array();
                                                         <ul>
                                                             <?php
                                                             foreach ($lpinstances as $instance) {
+
+                                                                if ($instance['type'] == 'courses') {
+                                                                    $getcourse = $DB->get_record('course', array(
+                                                                        'id' => $instance['instanceid']
+                                                                    ));
+                                                                    if (!$getcourse) {
+                                                                        continue;
+                                                                    }
+                                                                }
+
                                                                 if ($instance['order_number'] == $x) {
                                                                     if ($instance['type'] == 'courses') {
                                                                         $instanceurl = new moodle_url(
                                                                             '/course/view.php',
                                                                             [
                                                                                 'id' => $instance['instanceid'],
-                                                                                'newui' => 1
+                                                                                //'newui' => 1
                                                                             ]
                                                                         );
 
@@ -403,6 +413,14 @@ $plancoursematricular = array();
                                                                                         $coursesetcoursematricular = array();
 
                                                                                         foreach ($instance['subcourses'] as $inscourse) {
+
+                                                                                            $getcourse = $DB->get_record('course', array(
+                                                                                                'id' => $inscourse['courseid']
+                                                                                            ));
+                                                                                            if (!$getcourse) {
+                                                                                                continue;
+                                                                                            }
+
                                                                                             $selfenrol = $DB->get_record('enrol', array(
                                                                                                 'courseid' => $inscourse['courseid'],
                                                                                                 'enrol' => 'self',

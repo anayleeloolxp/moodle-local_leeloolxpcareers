@@ -38,7 +38,7 @@ $PAGE->set_heading("Course Set");
 $PAGE->set_url($CFG->wwwroot . '/local/leeloolxpcareers/courseset.php');
 
 $PAGE->requires->css('/local/leeloolxpcareers/assets/css/style.css');
-$PAGE->requires->css('/theme/reloaded/css/newui.css');
+$PAGE->requires->css('/theme/adsensitive/css/newui.css');
 $PAGE->requires->js('/local/leeloolxpcareers/assets/js/script.js');
 
 $configleeloolxpapi = get_config('local_leeloolxpapi');
@@ -200,7 +200,7 @@ $coursesetcoursematricular = array();
                                         '/course/view.php',
                                         [
                                             'id' => $course['courseid'],
-                                            'newui' => 1
+                                            //'newui' => 1
                                         ]
                                     );
                                 ?>
